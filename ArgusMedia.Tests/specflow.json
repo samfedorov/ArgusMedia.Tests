@@ -10,29 +10,28 @@
     "allowDebugGeneratedFiles": true,
     "generateAsyncTests": true,
     "path": "Features",
-    "skipParallelizableMarkerForTags": []
+    "skipParallelCodeGeneration": false
   },
-  "runtime": {
-    "obfuscate": false,
-    "stopAtFirstError": false,
-    "missingOrPendingStepsOutcome": "Pending",
-    "detectAmbiguousMatches": true
-  },
-  "stepAssemblies": [],
   "trace": {
     "traceSuccessfulSteps": true,
     "traceTimings": true,
-    "minTracedDuration": "0:0:0.1",
     "listener": "Console"
   },
-  "plugins": [
-    {
-      "name": "SpecFlow.NUnit",
-      "type": "Generator"
-    },
-    {
-      "name": "SpecFlow.NUnit",
-      "type": "Runtime"
-    }
-  ]
-}
+  "dependencyInjection": {
+    "dependencies": [
+      {
+        "type": "ArgusMedia.Tests.Steps.TestContext",
+        "lifetime": "Scenario"
+      }
+    ],
+    "plugins": [
+      {
+        "name": "SpecFlow.NUnit",
+        "type": "Generator"
+      },
+      {
+        "name": "SpecFlow.NUnit",
+        "type": "Runtime"
+      }
+    ]
+  }

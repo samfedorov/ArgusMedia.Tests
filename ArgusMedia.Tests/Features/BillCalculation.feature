@@ -1,9 +1,6 @@
 ﻿Feature: Bill Calculation
   Calculates correct bill with pricing rules, discounts and service charges.
 
-Background:
-    Given the service is started
-
 Scenario: A group of 4 people order full meals
     Given the following group order at 12:30:
       | Starters | Mains | Drinks |

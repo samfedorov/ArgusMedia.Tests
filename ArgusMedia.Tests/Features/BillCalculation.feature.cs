@@ -70,11 +70,6 @@ namespace ArgusMedia.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-            testRunner.Given("the service is started", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-        }
-        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("A group of 4 people order full meals")]
         public void AGroupOf4PeopleOrderFullMeals()
@@ -90,7 +85,6 @@ namespace ArgusMedia.Tests.Features
             else
             {
                 this.ScenarioStart();
-                this.FeatureBackground();
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "Starters",
                             "Mains",
@@ -133,7 +127,6 @@ namespace ArgusMedia.Tests.Features
             else
             {
                 this.ScenarioStart();
-                this.FeatureBackground();
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Starters",
                             "Mains",
@@ -181,7 +174,6 @@ namespace ArgusMedia.Tests.Features
             else
             {
                 this.ScenarioStart();
-                this.FeatureBackground();
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Starters",
                             "Mains",

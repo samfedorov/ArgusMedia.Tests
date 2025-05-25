@@ -10,11 +10,21 @@ namespace ArgusMedia.Tests.Steps
     [Binding]
     public class RestaurantBillingSteps
     {
-        private RestaurantApiManager _apiManager;
-        private List<OrderResponseModel> _orderResponse;
-        private ProductResponseModel _starterProduct;
-        private ProductResponseModel _mainsProduct;
-        private ProductResponseModel _drinksProduct;
+        private List<OrderResponseModel> _orderResponse { get; set; } = new();
+        private static RestaurantApiManager _apiManager;
+        private static ProductResponseModel _starterProduct;
+        private static ProductResponseModel _mainsProduct;
+        private static ProductResponseModel _drinksProduct;
+
+        [BeforeScenario]
+        public async Task BeforeScenario()
+        {
+            _apiManager = new RestaurantApiManager();
+            var products = await _apiManager.ProductController.GetAllProducts();
+            _starterProduct = products.GetProductByName("Starters");
+            _mainsProduct = products.GetProductByName("Mains");
+            _drinksProduct = products.GetProductByName("Drinks");
+        }
 
         private List<CreateOrderRequestModel> AddOrders(int productCount, Guid clientId, Guid productId, DateTime createDate)
         {
@@ -24,17 +34,6 @@ namespace ArgusMedia.Tests.Steps
                 orders.Add(new CreateOrderRequestModel(clientId, productId, createDate));
             }
             return orders;
-        }
-
-        [Given(@"the service is started")]
-        public async Task GivenSystemAsync()
-        {
-            _orderResponse = new List<OrderResponseModel>();
-            _apiManager = new RestaurantApiManager();
-            var products = await _apiManager.ProductController.GetAllProducts();
-            _starterProduct = products.GetProductByName("Starters");
-            _mainsProduct = products.GetProductByName("Mains");
-            _drinksProduct = products.GetProductByName("Drinks");
         }
 
         [Given(@"the following group order at (.*):")]
